@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D9BE38DE24C863C200977D1E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BE38DD24C863C200977D1E /* main.cpp */; };
+		D9BE38E724C8649500977D1E /* quic_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BE38E524C8649500977D1E /* quic_common.cpp */; };
+		D9BE38EA24C86FFF00977D1E /* quic_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D9BE38E824C86FFF00977D1E /* quic_client.cpp */; };
+		D9BE38ED24C8801900977D1E /* libquiche.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9BE38EC24C8801900977D1E /* libquiche.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,11 @@
 /* Begin PBXFileReference section */
 		D9BE38DA24C863C200977D1E /* quic-apps */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "quic-apps"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9BE38DD24C863C200977D1E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D9BE38E524C8649500977D1E /* quic_common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = quic_common.cpp; sourceTree = "<group>"; };
+		D9BE38E624C8649500977D1E /* quic_common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = quic_common.hpp; sourceTree = "<group>"; };
+		D9BE38E824C86FFF00977D1E /* quic_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = quic_client.cpp; sourceTree = "<group>"; };
+		D9BE38E924C86FFF00977D1E /* quic_client.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = quic_client.hpp; sourceTree = "<group>"; };
+		D9BE38EC24C8801900977D1E /* libquiche.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libquiche.a; path = ../quiche/target/debug/libquiche.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BE38ED24C8801900977D1E /* libquiche.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				D9BE38DC24C863C200977D1E /* quic-apps */,
 				D9BE38DB24C863C200977D1E /* Products */,
+				D9BE38EB24C8801900977D1E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +67,29 @@
 		D9BE38DC24C863C200977D1E /* quic-apps */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE38E424C8647D00977D1E /* quic */,
 				D9BE38DD24C863C200977D1E /* main.cpp */,
 			);
 			path = "quic-apps";
+			sourceTree = "<group>";
+		};
+		D9BE38E424C8647D00977D1E /* quic */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE38E524C8649500977D1E /* quic_common.cpp */,
+				D9BE38E624C8649500977D1E /* quic_common.hpp */,
+				D9BE38E824C86FFF00977D1E /* quic_client.cpp */,
+				D9BE38E924C86FFF00977D1E /* quic_client.hpp */,
+			);
+			path = quic;
+			sourceTree = "<group>";
+		};
+		D9BE38EB24C8801900977D1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9BE38EC24C8801900977D1E /* libquiche.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +149,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BE38E724C8649500977D1E /* quic_common.cpp in Sources */,
+				D9BE38EA24C86FFF00977D1E /* quic_client.cpp in Sources */,
 				D9BE38DE24C863C200977D1E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +208,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../quiche/include,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -228,6 +264,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../quiche/include,
+					/usr/local/include,
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -239,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = ../quiche/target/debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -247,6 +288,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = ../quiche/target/debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
